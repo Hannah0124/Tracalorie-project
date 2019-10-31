@@ -46,6 +46,20 @@
 
         return newItem;
       },
+      getTotalCalories: function() {
+        let total = 0; 
+
+        // Loop through items and add cals
+        data.items.forEach(function(item) {
+          total += item.calories;
+        });
+
+        // Set total cal in data structure
+        data.totalCalories = total;
+
+        // Return total
+        return data.totalCalories;
+      },
       logData: function() {
         return data;
       }
@@ -60,7 +74,8 @@
       itemList: '#item-list',
       addBtn: '.add-btn',
       itemNameInput: '#item-name',
-      itemCaloriesInput: '#item-calories'
+      itemCaloriesInput: '#item-calories',
+      totalCalories: '.total-calories'
     }
 
     // Public methods
@@ -89,7 +104,7 @@
       addListItem: function(item) {
         // Show the list 
         document.querySelector(UISelectors.itemList).style.display = 'block';
-        
+
         // Create li element 
         const li = document.createElement('li');
 
@@ -114,6 +129,9 @@
       },
       hideList: function() {
         document.querySelector(UISelectors.itemList).style.display = 'none';
+      },
+      showTotalCalories: function(totalCalories) {
+        document.querySelector(UISelectors.totalCalories).textContent = totalCalories;
       },
       getSelectors: function() {
         return UISelectors;
@@ -147,6 +165,12 @@
         // Add item to UI list 
         UICtrl.addListItem(newItem);
 
+        // Get total calories
+        const totalCalories = ItemCtrl.getTotalCalories();
+
+        // Add total calories to UI 
+        UICtrl.showTotalCalories(totalCalories);
+
         // Clear fields 
         UICtrl.clearInput();
       }
@@ -166,6 +190,12 @@
           // Populate list with items
           UICtrl.populateItemList(items);
         }
+
+        // Get total calories
+        const totalCalories = ItemCtrl.getTotalCalories();
+
+        // Add total calories to UI 
+        UICtrl.showTotalCalories(totalCalories);
 
         // Load event listeners 
         loadEventListeners();
