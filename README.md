@@ -12,7 +12,3 @@ To see a demo video, click the screenshot below.
 
 ## Related class
 Udemy: Modern javascript from the beginning
-
-
-## Built With
-* [OpenWeather API](https://openweathermap.org/api) - Simple and fast and free weather API from OpenWeatherMap
